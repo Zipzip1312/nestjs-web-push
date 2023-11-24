@@ -6,13 +6,14 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  sendMessage() {
-    return this.appService.sendMessage();
+  async sendMessage() {
+    const response = await this.appService.sendMessage();
+    return { response };
   }
 
   @Post()
-  createSubscription(@Body() body) {
-    console.log(body);
-    return { message: body?.message || 'no message', success: Boolean(body?.message) };
+  async createSubscription(@Body() body) {
+    const response = await this.appService.subscribe(body?.subscribtion);
+    return { response };
   }
 }
