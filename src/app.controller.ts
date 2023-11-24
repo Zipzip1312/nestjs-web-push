@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  sendMessage() {
+    return this.appService.sendMessage();
+  }
+
+  @Post()
+  createSubscription(@Body() body) {
+    console.log(body);
+    return { message: body?.message || 'no message', success: Boolean(body?.message) };
   }
 }
