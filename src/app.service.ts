@@ -15,9 +15,9 @@ export class AppService {
 
   constructor(private readonly httpService: HttpService) { }
 
-  async sendMessage() {
+  async sendMessage(message: string) {
     const { data } = await firstValueFrom(
-      this.httpService.get<IResponse>(this.apiUrl).pipe(
+      this.httpService.get<IResponse>(`${this.apiUrl}?message=${message}`).pipe(
         catchError((error: AxiosError) => {
           throw 'An error happened!';
         }),
