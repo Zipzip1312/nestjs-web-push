@@ -11,6 +11,7 @@ interface IResponse {
 export class AppService {
 
   private apiUrl = 'https://web-push-server-silk.vercel.app/api';
+  // private apiUrl = 'http://localhost:3001/api';
 
   constructor(private readonly httpService: HttpService) { }
 
@@ -26,9 +27,9 @@ export class AppService {
     return data?.message || 'no message have been received';
   }
 
-  async subscribe(subscribtion) {
+  async subscribe(subscription) {
     const { data } = await firstValueFrom(
-      this.httpService.post(this.apiUrl, { subscribtion }).pipe(
+      this.httpService.post(this.apiUrl, subscription).pipe(
         catchError((error: AxiosError) => {
           throw 'An error happened!';
         }),

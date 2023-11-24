@@ -13,7 +13,7 @@ export class AppController {
 
   @Post()
   async createSubscription(@Body() body) {
-    const response = await this.appService.subscribe(body?.subscribtion);
+    const response = await this.appService.subscribe(body);
     return { response };
   }
 }
