@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 
 interface IResponse {
-  message: string
+  data: any
 }
 
 @Injectable()
@@ -26,7 +26,7 @@ export class AppService {
       ),
     );
 
-    return data;
+    return { data };
   }
 
   async subscribe(subscription) {
