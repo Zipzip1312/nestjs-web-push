@@ -3,10 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 
-interface IResponse {
-  data: any
-}
-
 @Injectable()
 export class AppService {
 
@@ -19,14 +15,14 @@ export class AppService {
     const url = `${this.apiUrl}${message ? '?message=' + message : ''}`;
 
     const { data } = await firstValueFrom(
-      this.httpService.get<IResponse>(url).pipe(
+      this.httpService.get(url).pipe(
         catchError((error: AxiosError) => {
           throw 'An error happened!';
         }),
       ),
     );
 
-    return { data };
+    return data;
   }
 
   async subscribe(subscription) {
