@@ -26,7 +26,7 @@ export class AppService {
       ),
     );
 
-    return data?.message || 'no message have been received';
+    return data;
   }
 
   async subscribe(subscription) {
