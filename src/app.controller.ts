@@ -7,7 +7,7 @@ export class AppController {
 
   @Get()
   async sendMessage(@Query() query) {
-    const response = await this.appService.sendMessage(query?.message || 'no message provided');
+    const response = await this.appService.sendMessage(query?.message);
     return { response };
   }
 
