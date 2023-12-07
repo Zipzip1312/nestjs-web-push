@@ -6,14 +6,14 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  async sendMessage(@Query() query) {
-    const response = await this.appService.sendMessage(query?.message);
+  async getRequestProxy(@Query() query) {
+    const response = await this.appService.GET(query);
     return { response };
   }
 
   @Post()
-  async createSubscription(@Body() body) {
-    const response = await this.appService.subscribe(body);
+  async postRequestProxy(@Body() body) {
+    const response = await this.appService.POST(body);
     return { response };
   }
 }
